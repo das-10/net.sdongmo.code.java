@@ -85,5 +85,4 @@ public class ContactDaoImplTest {
 		contactMap.put("phoneNumber", phoneNumber);
 		contactDao.createContact(contactMap);
 	}
-	
 }
