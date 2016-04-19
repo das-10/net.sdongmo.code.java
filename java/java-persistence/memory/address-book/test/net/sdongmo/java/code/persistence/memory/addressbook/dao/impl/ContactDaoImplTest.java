@@ -67,8 +67,13 @@ public class ContactDaoImplTest {
 	}
 	
 	@Test
-	public void testGetContactById_02() throws ContactDoesntExist, ContactAlreadyExist {
-		givenContact(2, "testContact", "017230524290");
+	public void testGetContactById_02() throws ContactDoesntExist{
+		try {
+			givenContact(2, "testContact", "017230524290");
+		} catch (ContactAlreadyExist e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Contact contact = contactDao.getContactById(2);
 		assertEquals(2, contact.getContactId());
 	}
@@ -77,6 +82,12 @@ public class ContactDaoImplTest {
 	@Test(expected=ContactDoesntExist.class)
 	public void testThatGetContactByIdThrowException() throws ContactDoesntExist{
 		contactDao.getContactById(3);
+	}
+	
+	@Test(expected=ContactAlreadyExist.class)
+	public void testThatCreateContactThrowException() throws ContactAlreadyExist{
+		givenContact(2, "testContact", "017230524290");
+		givenContact(2, "testContact", "017230524290");
 	}
 	
 	private void givenContact(int contactId,String name,String phoneNumber) throws ContactAlreadyExist{

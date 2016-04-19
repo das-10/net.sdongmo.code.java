@@ -1,5 +1,8 @@
 package net.sdongmo.java.code.rest.addressbook;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="Contact")
 public class ContactDTO {
 	private int contactId;
 	private String name;

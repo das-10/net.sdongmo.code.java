@@ -54,7 +54,7 @@ public class ContactDaoImpl implements ContactDao {
 		String phoneNumber = (String) contactMap.get("phoneNumber");
 		int contactId =  (int) contactMap.get("contactId");
 		Contact contact = new Contact(name, phoneNumber, contactId);
-		if (dataLayer.containsKey(contact)){
+		if (dataLayer.containsKey(contactId)){
 			logger.info("Contact with Id:"+contactId+"..Already Exist");
 			throw new ContactAlreadyExist();
 		}else{
