@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import net.sdongmo.java.code.persistence.memory.addressbook.ContactAlreadyExist;
 import net.sdongmo.java.code.persistence.memory.addressbook.ContactDaoFactory;
+import net.sdongmo.java.code.persistence.memory.addressbook.ContactDoesntExist;
 import net.sdongmo.java.code.persistence.memory.addressbook.dao.ContactDao;
 import net.sdongmo.java.code.persistence.memory.addressbook.entities.Contact;
 
@@ -60,25 +61,25 @@ public class ContactDaoImplTest {
 	}
 
 	@Test
-	public void testSaveContactCorrectly() {
+	public void testSaveContactCorrectly() throws ContactAlreadyExist {
 		int contactId = contactDao.createContact(contactMap);
 		assertEquals(1, contactId);
 	}
 	
 	@Test
-	public void testGetContactById_02() throws ContactAlreadyExist {
+	public void testGetContactById_02() throws ContactDoesntExist, ContactAlreadyExist {
 		givenContact(2, "testContact", "017230524290");
 		Contact contact = contactDao.getContactById(2);
 		assertEquals(2, contact.getContactId());
 	}
 	
 	
-	@Test(expected=ContactAlreadyExist.class)
-	public void testThatGetContactByIdThrowException() throws ContactAlreadyExist{
+	@Test(expected=ContactDoesntExist.class)
+	public void testThatGetContactByIdThrowException() throws ContactDoesntExist{
 		contactDao.getContactById(3);
 	}
 	
-	private void givenContact(int contactId,String name,String phoneNumber){
+	private void givenContact(int contactId,String name,String phoneNumber) throws ContactAlreadyExist{
 		HashMap<String, Object> contactMap = new HashMap<>();
 		contactMap.put("name", name);
 		contactMap.put("contactId", contactId);

@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@Path("hello")
+@Path("/hello")
 public class HelloWorld {
 	
 	static Logger logger = LoggerFactory.getLogger(HelloWorld.class);

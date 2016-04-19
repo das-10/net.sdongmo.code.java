@@ -17,7 +17,7 @@
     
     <path id="src.path">
   		<pathelement location="src" />
-  		<pathelement location="test" />
+  		<!-- <pathelement location="test" /> -->
 	</path>
 
     <target name="clean">
